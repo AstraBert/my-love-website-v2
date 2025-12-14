@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    paths:
+        - "src/**"
+        - "Dockerfile"
+
+jobs:
+
+  build-docker-image:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      working-directory: frontend
+      run: docker build .

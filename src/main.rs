@@ -1,9 +1,9 @@
 mod components;
 mod utils;
 
-use dioxus::prelude::*;
+use crate::utils::get_love_sentence;
 use components::card::*;
-use crate::utils::{get_love_sentence};
+use dioxus::prelude::*;
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
@@ -15,7 +15,7 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    rsx! { 
+    rsx! {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
         document::Meta {
@@ -32,7 +32,7 @@ fn App() -> Element {
 
 struct LoveSentence {
     sentence: String,
-    loading: bool
+    loading: bool,
 }
 
 impl LoveSentence {
@@ -43,7 +43,10 @@ impl LoveSentence {
     }
 
     fn new() -> Self {
-        Self { sentence: "Ich liebe dich bis zum Mond und zurück.".to_string(), loading: false }
+        Self {
+            sentence: "Ich liebe dich bis zum Mond und zurück.".to_string(),
+            loading: false,
+        }
     }
 }
 
@@ -56,7 +59,7 @@ pub fn PageHeader() -> Element {
                 class: "text-xl font-bold text-pink-700 text-center mb-4 italic",
                 "Some love sentences for you..."
             },
-            img { 
+            img {
                 class: "justify-center w-[50%] h-[50%]",
                 src: CUTE_IMAGE,
                 alt: "Two cats (one black and one white) hugging each other (a representaton of our love)",
@@ -74,22 +77,22 @@ pub fn AppContent() -> Element {
     let mut state = use_signal(LoveSentence::new);
 
     rsx! {
-        div { 
+        div {
             class: "flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-white via-pink-100 to-pink-300",
             PageHeader {},
             Card {
                 class: "w-full max-w-xl shadow-lg",
-                CardHeader { 
-                    CardTitle { 
+                CardHeader {
+                    CardTitle {
                         class: "text-center text-lg",
                         "Do you believe in love?💕"
                     }
-                    CardDescription { 
+                    CardDescription {
                         class: "text-center",
                         "Well, your girlfriend (Clelia) does - and because of you!🥺👉👈"
                     }
                 },
-                CardContent { 
+                CardContent {
                     p {
                         class: "text-center",
                         "So here is a sentence to show you all her love:"
@@ -105,7 +108,7 @@ pub fn AppContent() -> Element {
                         "Want to see another love sentence? Click below!👇"
                     },
                 },
-                CardFooter { 
+                CardFooter {
                     button {
                         onclick: move |_| state.write().new_sentence(),
                         class: "w-full bg-gradient-to-br from-pink-300 via-red-400 to-red-600 mb-4 mt-2",

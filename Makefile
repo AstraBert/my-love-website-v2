@@ -1,4 +1,4 @@
-.PHONY: build test clippy clippy-fix format format-check
+.PHONY: test clippy clippy-fix format format-check
 
 test:
 	$(info ****************** running tests ******************)
@@ -19,7 +19,3 @@ format:
 format-check:
 	$(info ****************** running rustfmt in check mode ******************)
 	cargo fmt --check
-
-audit:
-	$(info ****************** running cargo-audit ******************)
-	cargo audit

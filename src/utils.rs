@@ -31,16 +31,17 @@ pub fn get_love_sentence() -> String {
         "You're the sparkle in my mundane Tuesday.",
         "With you, even doing nothing feels like everything.",
         "You're the best chapter in my story.",
-        "I love you more than I hate early mornings."
+        "I love you more than I hate early mornings.",
     ];
     let mut rng = rand::rng();
     let l = sentences.len();
-    let idx =  rng.random_range(0..l);
+    let idx = rng.random_range(0..l);
     sentences[idx].to_string()
 }
 
-
+#[cfg(test)]
 mod tests {
+
     use super::*;
 
     #[test]
@@ -49,7 +50,8 @@ mod tests {
             "You had me at 'let's order Indian food'.".to_string(),
             "I love you more than chocolate...".to_string(),
             "You're my favorite notification.".to_string(),
-            "You must be a magician, because every time I look at you, everyone else disappears.".to_string(),
+            "You must be a magician, because every time I look at you, everyone else disappears."
+                .to_string(),
             "You're the nutella to my bread.".to_string(),
             "If kisses were snowflakes, I'd send you a blizzard.".to_string(),
             "You're like Wi-Fi — I feel lost without you.".to_string(),
@@ -75,10 +77,9 @@ mod tests {
             "You're the sparkle in my mundane Tuesday.".to_string(),
             "With you, even doing nothing feels like everything.".to_string(),
             "You're the best chapter in my story.".to_string(),
-            "I love you more than I hate early mornings.".to_string()
+            "I love you more than I hate early mornings.".to_string(),
         ];
         let sentence = get_love_sentence();
         assert!(&sentences.contains(&sentence));
     }
-
 }
